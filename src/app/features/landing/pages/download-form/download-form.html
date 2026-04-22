@@ -6,22 +6,34 @@
       The downloadable forms section is currently the main feature available on this website.
     </p>
 
-    <div class="ui relaxed divided list">
-      <div class="item">
-        <i class="large file pdf middle aligned icon"></i>
-        <div class="content">
-          <a class="header" href="#">Leave Request Form</a>
-          <div class="description">Download the form for leave applications.</div>
+    <div class="ui styled fluid accordion download-accordion">
+      <div
+        class="accordion-block"
+        *ngFor="let section of sections; let i = index"
+      >
+        <div
+          class="title"
+          [class.active]="activeIndex === i"
+          (click)="toggleSection(i)"
+        >
+          <i class="dropdown icon"></i>
+          <span class="accordion-title">{{ section.title }}</span>
+          <small class="accordion-description">{{ section.description }}</small>
         </div>
-      </div>
 
-      <div class="item">
-        <i class="large file alternate middle aligned icon"></i>
-        <div class="content">
-          <a class="header" href="#">Employee Information Form</a>
-          <div class="description">Use this form to update employee records.</div>
+        <div class="content" [class.active]="activeIndex === i">
+          <div class="ui relaxed divided list form-list">
+            <div class="item" *ngFor="let form of section.forms">
+              <i class="large file alternate outline middle aligned green icon"></i>
+              <div class="content">
+                <a class="header" href="#">{{ form.name }}</a>
+                <div class="description">{{ form.note }}</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
   </div>
 </section>

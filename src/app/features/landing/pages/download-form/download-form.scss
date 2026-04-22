@@ -9,3 +9,57 @@
   line-height: 1.8;
   margin-bottom: 2rem;
 }
+
+.download-accordion {
+  margin-top: 2rem;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.08);
+}
+
+.accordion-block + .accordion-block {
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.download-accordion .title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.2rem 1.25rem;
+  cursor: pointer;
+  background: #ffffff;
+  transition: background-color 0.2s ease;
+}
+
+.download-accordion .title:hover,
+.download-accordion .title.active {
+  background: #f0fdf4;
+}
+
+.download-accordion .title .dropdown.icon {
+  color: #16a34a;
+}
+
+.accordion-title {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.accordion-description {
+  margin-left: auto;
+  color: #64748b;
+}
+
+.download-accordion .content {
+  display: none;
+  padding: 0 1.25rem 1.25rem;
+  background: #ffffff;
+}
+
+.download-accordion .content.active {
+  display: block;
+}
+
+.form-list .item {
+  padding: 1rem 0;
+}

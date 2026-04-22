@@ -4,7 +4,7 @@ import { Home } from './features/landing/pages/home/home';
 import { MainLayout } from './layout/main-layout/main-layout';
 import { DownloadForm } from './features/landing/pages/download-form/download-form';
 import { CompanyUpdates } from './features/landing/pages/company-updates/company-updates';
-import { Announcement } from './employee/pages/announcement/announcement';
+import { Announcement } from './features/landing/pages/announcement/announcement';
 
 export const routes: Routes = [
     {
