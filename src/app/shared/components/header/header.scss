@@ -29,6 +29,12 @@
   min-height: 70px;
 }
 
+.hr-header .logout-item {
+  background: transparent;
+  border: 0;
+  font: inherit;
+}
+
 .hr-header a.item::after {
   content: '';
   position: absolute;
@@ -41,6 +47,12 @@
   transform: scaleX(0);
   transform-origin: center;
   transition: transform 0.25s ease;
+}
+
+.hr-header .logout-item {
+  background: transparent;
+  border: 0;
+  font: inherit;
 }
 
 .hr-header a.item:hover::after {

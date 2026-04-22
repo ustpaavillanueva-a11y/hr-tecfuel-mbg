@@ -1,1 +1,45 @@
-<p>login works!</p>
+<section class="ui vertical segment login-page">
+  <div class="ui text container">
+    <div class="ui raised very padded segment login-card">
+    
+     
+
+      <form class="ui form" (ngSubmit)="submit()">
+        <div class="field">
+          <label>Employee ID</label>
+          <input
+            type="text"
+            name="employeeId"
+            [(ngModel)]="employeeId"
+            placeholder="Enter Employee ID"
+          />
+        </div>
+
+        <div class="field">
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            [(ngModel)]="password"
+            placeholder="Enter Password"
+          />
+        </div>
+
+        <div class="ui negative message" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </div>
+
+        <button
+          type="submit"
+          class="ui fluid green large button"
+          [class.loading]="isSubmitting"
+          [disabled]="isSubmitting || !employeeId || !password"
+        >
+          Login
+        </button>
+      </form>
+
+    
+    </div>
+  </div>
+</section>

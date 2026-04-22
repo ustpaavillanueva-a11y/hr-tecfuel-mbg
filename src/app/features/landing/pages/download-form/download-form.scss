@@ -77,6 +77,25 @@
   display: block;
 }
 
+.content-shell {
+  position: relative;
+}
+
+.content-shell.is-locked > :not(.lock-overlay) {
+  filter: blur(6px);
+  user-select: none;
+  pointer-events: none;
+}
+
+.lock-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
 .form-list .item {
   display: flex !important;
   align-items: center !important;

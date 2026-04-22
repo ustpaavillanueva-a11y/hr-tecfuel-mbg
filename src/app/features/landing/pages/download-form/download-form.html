@@ -1,6 +1,6 @@
 <section class="ui vertical segment landing-page-section">
   <div class="ui container download-form-container">
-    <div class="ui green label">Available Now</div>
+    <div class="ui olive label">Available Now</div>
     <h1 class="ui header">Downloadable Forms</h1>
     <p class="page-lead">
       The downloadable forms section is currently the main feature available on this website.
@@ -15,7 +15,8 @@
           type="button"
           class="title"
           [class.active]="activeIndex === i"
-          (click)="toggleSection(i)"
+          [class.locked]="!isLoggedIn()"
+          (click)="handleSectionClick(i)"
         >
           <i class="dropdown icon"></i>
           <span class="accordion-title">{{ section.title }}</span>
@@ -23,106 +24,119 @@
         </button>
 
         <div class="content" [class.active]="activeIndex === i">
-          <div
-            class="ui relaxed divided list form-list"
-            *ngIf="!section.contentType"
-          >
-            <div class="item" *ngFor="let form of section.forms">
-              <i class="large file word outline middle aligned green icon"></i>
-              <div class="content">
-                <a
-                  class="header"
-                  [href]="form.file"
-                  [attr.download]="form.external ? null : ''"
-                  [attr.target]="form.external ? '_blank' : null"
-                  [attr.rel]="form.external ? 'noopener noreferrer' : null"
-                >
-                  {{ form.name }}
-                </a>
+          <div class="content-shell" [class.is-locked]="!isLoggedIn()">
+            <div
+              class="ui relaxed divided list form-list"
+              *ngIf="!section.contentType"
+            >
+              <div class="item" *ngFor="let form of section.forms">
+                <i class="large file word outline middle aligned green icon"></i>
+                <div class="content">
+                  <a
+                    class="header"
+                    [href]="isLoggedIn() ? form.file : null"
+                    [attr.download]="isLoggedIn() && !form.external ? '' : null"
+                    [attr.target]="isLoggedIn() && form.external ? '_blank' : null"
+                    [attr.rel]="isLoggedIn() && form.external ? 'noopener noreferrer' : null"
+                    (click)="!isLoggedIn() && $event.preventDefault()"
+                  >
+                    {{ form.name }}
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="ui segments info-sections" *ngIf="section.contentType === 'payroll'">
-            <div class="ui segment">
-              <h3 class="ui header">Statutory Benefits Deadline</h3>
-              <p><strong>Submission Date:</strong> Every 15th of the Month.</p>
-              <p><strong>Payment Window:</strong> Please settle payments on or before the 14th to ensure funds are cleared and posted by the official deadline.</p>
-              <p><strong>Coverage:</strong> Includes SSS, PhilHealth, and HDMF (Pag-IBIG) contributions.</p>
+            <div class="ui segments info-sections" *ngIf="section.contentType === 'payroll'">
+              <div class="ui segment">
+                <h3 class="ui header">Statutory Benefits Deadline</h3>
+                <p><strong>Submission Date:</strong> Every 15th of the Month.</p>
+                <p><strong>Payment Window:</strong> Please settle payments on or before the 14th to ensure funds are cleared and posted by the official deadline.</p>
+                <p><strong>Coverage:</strong> Includes SSS, PhilHealth, and HDMF (Pag-IBIG) contributions.</p>
+              </div>
+
+              <div class="ui segment">
+                <h3 class="ui header">Holiday Pay Policy</h3>
+                <h4>1. Regular Holidays</h4>
+                <p>These are fixed dates of national significance such as New Year's Day and Independence Day.</p>
+                <p><strong>If it falls on a Rest Day:</strong> If worked, the rate is 260% (Daily Rate X 200% X 130).</p>
+                <p><strong>If Unworked:</strong> The employee receives 100% of their daily wage, provided they were present or on paid leave on the workday immediately preceding the holiday.</p>
+                <p><strong>If Worked:</strong> The employee receives 200% of their daily wage for the first 8 hours.</p>
+                <p><strong>Overtime (OT):</strong> Any work beyond 8 hours earns an additional 30% of the hourly rate on that day (Hourly Rate X 200% X 130).</p>
+
+                <h4>2. Special Non-Working Days</h4>
+                <p>These are often declared via Presidential Proclamation such as Ninoy Aquino Day and All Saints' Day.</p>
+                <p><strong>If it falls on a Rest Day:</strong> If worked, the rate is 150% of the daily wage.</p>
+                <p><strong>If Unworked:</strong> The No Work, No Pay principle applies unless company policy or a CBA states otherwise.</p>
+                <p><strong>If Worked:</strong> The employee receives an additional 30% of their daily wage, totaling 130%.</p>
+                <p><strong>Overtime (OT):</strong> Any work beyond 8 hours earns an additional 30% of the hourly rate on that day (Hourly Rate X 130% X 130).</p>
+
+                <h4>3. Special Working Holidays</h4>
+                <p>On these days, no premium pay is required.</p>
+                <p><strong>Work Rule:</strong> If an employee works, they receive only their regular daily wage (100%).</p>
+                <p><strong>If Unworked:</strong> No pay under standard workday rules.</p>
+
+                <h4>4. Straight Duty</h4>
+                <p><strong>First 8 Hours:</strong> Paid at the regular daily rate.</p>
+                <p><strong>Next Shift on the Same Day:</strong> These are treated as Overtime (OT).</p>
+                <p><strong>Regular Day:</strong> Hourly Rate X 125%</p>
+                <p><strong>Rest Day/Holiday:</strong> Hourly Rate X 130% on top of the holiday premium.</p>
+                <p><strong>Night Differential:</strong> If the straight duty extends into the 10:00 PM to 6:00 AM window, the 10% Night Shift Differential must be added to the OT rate.</p>
+              </div>
             </div>
 
-            <div class="ui segment">
-              <h3 class="ui header">Holiday Pay Policy</h3>
-              <h4>1. Regular Holidays</h4>
-              <p>These are fixed dates of national significance such as New Year's Day and Independence Day.</p>
-              <p><strong>If it falls on a Rest Day:</strong> If worked, the rate is 260% (Daily Rate X 200% X 130).</p>
-              <p><strong>If Unworked:</strong> The employee receives 100% of their daily wage, provided they were present or on paid leave on the workday immediately preceding the holiday.</p>
-              <p><strong>If Worked:</strong> The employee receives 200% of their daily wage for the first 8 hours.</p>
-              <p><strong>Overtime (OT):</strong> Any work beyond 8 hours earns an additional 30% of the hourly rate on that day (Hourly Rate X 200% X 130).</p>
+            <div class="ui segments info-sections" *ngIf="section.contentType === 'sop'">
+              <div class="ui segment">
+                <h3 class="ui header">Leave Entitlement and Accrual Policy</h3>
+                <p>
+                  All eligible employees are entitled to a quarterly leave allocation consisting of two (2)
+                  Vacation Leave (VL) days and two (2) Sick Leave (SL) days.
+                </p>
+              </div>
 
-              <h4>2. Special Non-Working Days</h4>
-              <p>These are often declared via Presidential Proclamation such as Ninoy Aquino Day and All Saints' Day.</p>
-              <p><strong>If it falls on a Rest Day:</strong> If worked, the rate is 150% of the daily wage.</p>
-              <p><strong>If Unworked:</strong> The No Work, No Pay principle applies unless company policy or a CBA states otherwise.</p>
-              <p><strong>If Worked:</strong> The employee receives an additional 30% of their daily wage, totaling 130%.</p>
-              <p><strong>Overtime (OT):</strong> Any work beyond 8 hours earns an additional 30% of the hourly rate on that day (Hourly Rate X 130% X 130).</p>
-
-              <h4>3. Special Working Holidays</h4>
-              <p>On these days, no premium pay is required.</p>
-              <p><strong>Work Rule:</strong> If an employee works, they receive only their regular daily wage (100%).</p>
-              <p><strong>If Unworked:</strong> No pay under standard workday rules.</p>
-
-              <h4>4. Straight Duty</h4>
-              <p><strong>First 8 Hours:</strong> Paid at the regular daily rate.</p>
-              <p><strong>Next Shift on the Same Day:</strong> These are treated as Overtime (OT).</p>
-              <p><strong>Regular Day:</strong> Hourly Rate X 125%</p>
-              <p><strong>Rest Day/Holiday:</strong> Hourly Rate X 130% on top of the holiday premium.</p>
-              <p><strong>Night Differential:</strong> If the straight duty extends into the 10:00 PM to 6:00 AM window, the 10% Night Shift Differential must be added to the OT rate.</p>
+              <div class="ui segment">
+                <h3 class="ui header">Table of Attendance</h3>
+                <table class="ui celled table">
+                  <thead>
+                    <tr>
+                      <th>Employee Name</th>
+                      <th>Date</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Juan Dela Cruz</td>
+                      <td>2026-04-22</td>
+                      <td>Present</td>
+                    </tr>
+                    <tr>
+                      <td>Maria Santos</td>
+                      <td>2026-04-22</td>
+                      <td>Late</td>
+                    </tr>
+                    <tr>
+                      <td>Pedro Reyes</td>
+                      <td>2026-04-22</td>
+                      <td>On Leave</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
 
-          <div class="ui segments info-sections" *ngIf="section.contentType === 'sop'">
-            <div class="ui segment">
-              <h3 class="ui header">Leave Entitlement and Accrual Policy</h3>
-              <p>
-                All eligible employees are entitled to a quarterly leave allocation consisting of two (2)
-                Vacation Leave (VL) days and two (2) Sick Leave (SL) days.
-              </p>
-            </div>
-
-            <div class="ui segment">
-              <h3 class="ui header">Table of Attendance</h3>
-              <table class="ui celled table">
-                <thead>
-                  <tr>
-                    <th>Status</th>
-                    <th>Timeframe</th>
-                    <th>Impact/Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>On-Time</td>
-                    <td>At or before shift start</td>
-                    <td>Standard Pay</td>
-                  </tr>
-                  <tr>
-                    <td>Tardy (Late)</td>
-                    <td>1 – 30 minutes late</td>
-                    <td>Minute-based salary deduction</td>
-                  </tr>
-                  <tr>
-                    <td>Undertime</td>
-                    <td>	31+ minutes late</td>
-                    <td>1-hour/Half-day deduction + Written Explanation</td>
-                  </tr>
-                   <tr>
-                    <td>Absent</td>
-                    <td>	No-show without notice</td>
-                    <td>	Documented AWOP (Absence Without Permission)</td>
-                  </tr>
-                </tbody>
-              </table>
+            <div class="lock-overlay" *ngIf="!isLoggedIn()">
+              <div class="ui icon message">
+                <i class="lock icon"></i>
+                <div class="content">
+                  <div class="header">Login Required</div>
+                  <p>
+                    This section is locked. Login first to view full details and download forms.
+                  </p>
+                  <button type="button" class="ui green button" (click)="goToLogin()">
+                    Go to Login
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>

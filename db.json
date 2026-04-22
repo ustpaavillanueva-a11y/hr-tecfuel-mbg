@@ -1,0 +1,25 @@
+{
+  "employees": [
+    {
+      "id": 1,
+      "employeeId": "EMP-1001",
+      "password": "tecfuel123",
+      "fullName": "Juan Dela Cruz",
+      "role": "employee"
+    },
+    {
+      "id": 2,
+      "employeeId": "EMP-1002",
+      "password": "welcome123",
+      "fullName": "Maria Santos",
+      "role": "employee"
+    },
+    {
+      "id": 3,
+      "employeeId": "HR-0001",
+      "password": "admin123",
+      "fullName": "HR Admin",
+      "role": "admin"
+    }
+  ]
+}

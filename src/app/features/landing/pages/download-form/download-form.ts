@@ -1,15 +1,21 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../../../core/services/auth.services';
 
 @Component({
   selector: 'app-download-form',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './download-form.html',
-  styleUrl: './download-form.scss',
+  styleUrl: './download-form.scss'
 })
 export class DownloadForm {
-    activeIndex = -1;
+  private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
+
+  activeIndex = -1;
+  readonly isLoggedIn = computed(() => this.authService.isLoggedIn());
 
   readonly sections = [
     {
@@ -69,7 +75,11 @@ export class DownloadForm {
     },
   ];
 
-  toggleSection(index: number): void {
+  handleSectionClick(index: number): void {
     this.activeIndex = this.activeIndex === index ? -1 : index;
+  }
+
+  goToLogin(): void {
+    this.router.navigateByUrl('/login');
   }
 }
