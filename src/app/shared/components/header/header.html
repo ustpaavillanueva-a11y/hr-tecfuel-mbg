@@ -1,0 +1,37 @@
+<header class="ui large top fixed menu hr-header">
+  <div class="ui container">
+    <a class="header item brand" routerLink="/">
+      <i class="users icon"></i>
+      HR System
+    </a>
+
+    <a
+      class="item"
+      routerLink="/"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Home
+    </a>
+
+    <a class="item" href="#announcements">
+      Announcements
+    </a>
+
+    <a class="item" href="#updates">
+      Company Updates
+    </a>
+
+    <div class="right menu">
+      <a class="item" routerLink="/login" routerLinkActive="active">
+        Login
+      </a>
+
+      <div class="item">
+        <a class="ui primary button" routerLink="/login">
+          Employee Portal
+        </a>
+      </div>
+    </div>
+  </div>
+</header>

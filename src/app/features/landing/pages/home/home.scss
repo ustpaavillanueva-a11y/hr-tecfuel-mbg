@@ -1,0 +1,27 @@
+.home-hero {
+  min-height: calc(100vh - 180px);
+  display: flex;
+  align-items: center;
+  background:
+    linear-gradient(rgba(248, 250, 252, 0.92), rgba(248, 250, 252, 0.92)),
+    linear-gradient(135deg, #dbeafe, #f8fafc 50%, #e0f2fe);
+}
+
+.home-hero .ui.header {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #0f172a;
+}
+
+.lead-text {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #475569;
+  margin-bottom: 2rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
