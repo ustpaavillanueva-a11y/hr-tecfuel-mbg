@@ -1,9 +1,8 @@
 <header class="ui large top fixed menu hr-header">
   <div class="ui container">
     <a class="header item brand" routerLink="/">
-      <i class="users icon"></i>
-      HR System
-    </a>
+<img src="/header-logo.png" alt="HR System" class="header-logo">
+</a>
 
     <a
       class="item"
@@ -14,21 +13,24 @@
       Home
     </a>
 
-    <a class="item" href="#announcements">
+    <a class="item" routerLink="/announcements" routerLinkActive="active">
       Announcements
     </a>
 
-    <a class="item" href="#updates">
+    <a class="item" routerLink="/company-updates" routerLinkActive="active">
       Company Updates
     </a>
 
+    <a class="item" routerLink="/download-form" routerLinkActive="active">
+      Download Form
+    </a>
     <div class="right menu">
-      <a class="item" routerLink="/login" routerLinkActive="active">
+      <a class="item"  routerLinkActive="active">
         Login
       </a>
 
       <div class="item">
-        <a class="ui primary button" routerLink="/login">
+        <a class="ui primary button" >
           Employee Portal
         </a>
       </div>
