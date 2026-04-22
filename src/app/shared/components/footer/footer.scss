@@ -1,14 +1,19 @@
 .hr-footer {
   margin-top: 4rem;
   padding: 3rem 0 2rem;
-  background: #1b1c1d;
+  background: linear-gradient(135deg, #15803d, #166534) !important;
 }
 
+.hr-footer .ui.inverted.header,
 .hr-footer p,
 .hr-footer .item,
 .hr-footer .content,
 .hr-footer span {
   color: rgba(255, 255, 255, 0.82);
+}
+
+.hr-footer .ui.inverted.link.list .item:hover {
+  color: #dcfce7;
 }
 
 .footer-bottom {
