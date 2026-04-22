@@ -9,50 +9,63 @@ import { Component } from '@angular/core';
   styleUrl: './download-form.scss',
 })
 export class DownloadForm {
-   activeIndex = 0;
+    activeIndex = -1;
 
   readonly sections = [
     {
-      title: 'Leave Forms',
-      description: 'Forms for leave filing and approval requests.',
+      title: 'HR FORM',
+      description: 'Downloadable HR forms and internal request documents.',
       forms: [
-        {
-          name: 'Leave Request Form',
-          note: 'Use this form for vacation, sick leave, and other leave applications.',
-        },
-        {
-          name: 'Return-to-Work Form',
-          note: 'Complete this after an approved leave period when required.',
-        },
+        { name: 'ATD FORM TEC', file: '/forms/atd-form-tec-1.docx' },
+        { name: 'CA FORM TEC', file: '/forms/ca-form-tec-1.docx' },
+        { name: 'LEAVE APPLICATION FORM', file: '/forms/leave-application-form-1.docx' },
+        { name: 'OT FORM TEC', file: '/forms/ot-form-tec-1.docx' },
+        { name: 'PASSLIP FORM', file: '/forms/passlip-form-1.docx' },
+        { name: 'TRAVEL ORDER FORM', file: '/forms/travel-order-form-1.docx' },
+        { name: 'NPA FORM', file: '/forms/npa-form-1.docx' },
       ],
     },
     {
-      title: 'Employee Records',
-      description: 'Documents for updating employee information.',
+      title: 'EMPLOYEE RELATIONS SECTION',
+      description: 'Employee relations notices, reports, and certification forms.',
       forms: [
-        {
-          name: 'Employee Information Form',
-          note: 'Use this to update your personal and employment details.',
-        },
-        {
-          name: 'Dependent Update Form',
-          note: 'Submit this when adding or updating dependent information.',
-        },
+        { name: 'INCIDENT REPORT NEW TFESI', file: '/forms/incident-report-new-tfesi.docx' },
+        { name: 'NOTICE TO EXPLAIN NEW TFESI', file: '/forms/notice-to-explain-new-tfesi.docx' },
+        { name: 'NOTICE OF DISCIPLINARY ACTION NEW TFESI', file: '/forms/notice-of-disciplinary-action-new-tfesi.docx' },
+        { name: 'AWOP NOTICE 1st', file: '/forms/awop-notice-1st.docx' },
+        { name: 'AWOP NOTICE (FINAL NOTICE)', file: '/forms/awop-notice-final-notice.docx' },
+        { name: 'COE SEPARATED TFESI', file: '/forms/coe-separated-tfesi.docx' },
+        { name: 'COE TANKER DRIVER', file: '/forms/coe-tanker-driver.docx' },
+        { name: 'END OF CONTRACT', file: '/forms/end-of-contract.docx' },
       ],
     },
     {
-      title: 'General HR Forms',
-      description: 'Common downloadable forms for routine HR transactions.',
+      title: 'RECRUITMENT',
+      description: 'Recruitment files, contracts, and evaluation documents.',
       forms: [
         {
-          name: 'Certificate Request Form',
-          note: 'Request employment certificates and similar HR documents.',
+          name: 'Preorientation Slide',
+          file: 'https://www.canva.com/design/DAGqp59Vozw/NjZ0XU18txByz48y_0oRVg/edit',
+          external: true,
         },
-        {
-          name: 'Clearance Form',
-          note: 'Use this for employee clearance processing.',
-        },
+        { name: 'TRAINEESHIP CONTRACT', file: '/forms/traineeship-contract.docx' },
+        { name: 'PROBATIONARY CONTRACT', file: '/forms/probationary-contract.docx' },
+        { name: 'EMPLOYEE EVALUATION 1', file: '/forms/employee-evaluation-1.docx' },
+        { name: 'REGULARIZATION LETTER', file: '/forms/regularization-letter.docx' },
+        { name: 'REGULAR EMPLOYMENT CONTRACT 082824', file: '/forms/regular-employment-contract-082824.docx' },
       ],
+    },
+    {
+      title: 'PAYROLL',
+      description: 'Policies and payment-related HR references.',
+      contentType: 'payroll',
+      forms: [],
+    },
+    {
+      title: 'HR SOP',
+      description: 'Standard operating procedures and attendance reference.',
+      contentType: 'sop',
+      forms: [],
     },
   ];
 
